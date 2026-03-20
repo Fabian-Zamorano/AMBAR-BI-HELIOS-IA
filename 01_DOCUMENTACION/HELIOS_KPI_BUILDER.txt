@@ -1,0 +1,118 @@
+HELIOS KPI BUILDER
+
+El módulo HELIOS KPI Builder es el componente encargado de generar indicadores de gestión a partir de las métricas detectadas en el dataset.
+
+Su función es transformar datos operativos en indicadores útiles para el análisis empresarial.
+
+--------------------------------------------------
+
+1. OBJETIVO
+
+El KPI Builder debe:
+
+- identificar métricas disponibles
+- detectar posibles indicadores
+- sugerir indicadores al usuario
+- permitir que el usuario seleccione los indicadores que desea utilizar
+
+Esto permite que los dashboards se construyan a partir de indicadores relevantes para el negocio.
+
+--------------------------------------------------
+
+2. FUENTES DE MÉTRICAS
+
+Las métricas utilizadas para construir KPI provienen de la matriz semántica de ÁMBAR BI.
+
+Ejemplos de métricas:
+
+ventas
+costos
+horas hombre
+cantidad vendida
+cantidad personal
+
+--------------------------------------------------
+
+3. GENERACIÓN DE INDICADORES
+
+El sistema puede generar indicadores automáticamente utilizando combinaciones de métricas.
+
+Ejemplos:
+
+margen = ventas - costos
+
+ventas totales = suma de ventas
+
+horas totales = suma de horas trabajadas
+
+costos por área = suma de costos agrupados por área
+
+--------------------------------------------------
+
+4. INDICADORES TÍPICOS POR PATRÓN
+
+PROJECT_OPERATIONS
+
+costos proyecto
+HH utilizadas
+avance proyecto
+margen proyecto
+
+SERVICE_OUTSOURCING
+
+horas por cliente
+facturación por cliente
+cantidad de personal por servicio
+margen servicio
+
+RETAIL_SALES
+
+ventas por producto
+ventas por vendedor
+ventas por período
+margen de venta
+
+HR_OPERATIONS
+
+dotación
+horas extras
+ausentismo
+distribución personal
+
+--------------------------------------------------
+
+5. SELECCIÓN DE KPI
+
+Una vez generados los indicadores sugeridos, el sistema los presenta al usuario.
+
+El usuario diseñador puede:
+
+activar indicadores
+desactivar indicadores
+crear indicadores adicionales
+
+Esto permite adaptar el dashboard a las necesidades de la empresa.
+
+--------------------------------------------------
+
+6. RELACIÓN CON DASHBOARDS
+
+Los indicadores seleccionados se utilizan para construir dashboards.
+
+Cada KPI puede representarse mediante:
+
+tarjetas de indicador
+gráficos de barras
+tablas
+tendencias temporales
+
+--------------------------------------------------
+
+7. OBJETIVO DEL MVP
+
+El MVP del sistema debe ser capaz de:
+
+detectar métricas en un dataset
+generar indicadores básicos
+permitir al usuario seleccionar indicadores
+utilizar esos indicadores para construir un dashboard inicial

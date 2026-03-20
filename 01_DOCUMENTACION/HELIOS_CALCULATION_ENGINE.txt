@@ -1,0 +1,180 @@
+HELIOS CALCULATION ENGINE
+
+ÁMBAR BI + HELIOS
+
+1. Propósito
+
+El HELIOS Calculation Engine es el componente encargado de realizar cálculos automáticos sobre los datos importados en el sistema.
+
+Su función es permitir que ÁMBAR BI genere indicadores, métricas y agregaciones sin requerir que el usuario construya manualmente todas las fórmulas.
+
+Esto permite que el sistema transforme datasets en análisis de negocio de forma automática.
+
+2. Principio de funcionamiento
+
+Cuando HELIOS detecta métricas dentro de un dataset, el motor de cálculo puede generar automáticamente operaciones sobre esos datos.
+
+Ejemplo:
+
+Dataset:
+
+ventas
+costos
+cantidad
+fecha
+producto
+cliente
+
+HELIOS detecta:
+
+Métricas:
+
+ventas
+costos
+cantidad
+
+Dimensiones:
+
+fecha
+producto
+cliente
+
+A partir de esto el sistema puede calcular automáticamente:
+
+ventas totales
+costos totales
+margen
+ventas por producto
+ventas por cliente
+ventas por periodo
+3. Tipos de cálculos soportados
+3.1 Agregaciones básicas
+
+El sistema debe soportar automáticamente:
+
+SUM
+AVERAGE
+COUNT
+MIN
+MAX
+
+Ejemplos:
+
+Ventas totales
+Promedio de ventas
+Cantidad de operaciones
+Costo máximo
+3.2 Cálculos derivados
+
+Indicadores construidos a partir de métricas base.
+
+Ejemplos:
+
+Margen = Ventas - Costos
+Rentabilidad = Margen / Ventas
+Precio promedio = Ventas / Cantidad
+3.3 Cálculos por dimensión
+
+Permiten analizar métricas agrupadas.
+
+Ejemplo:
+
+Ventas por producto
+Ventas por cliente
+Costos por área
+HH por actividad
+3.4 Cálculos temporales
+
+Permiten analizar evolución en el tiempo.
+
+Ejemplos:
+
+Ventas por mes
+Ventas por año
+Crecimiento mensual
+Acumulado anual
+Comparación mes anterior
+3.5 Cálculos de participación
+
+Permiten ver proporciones dentro de un total.
+
+Ejemplos:
+
+% ventas por producto
+% costos por área
+participación de cliente
+4. Cálculos automáticos sugeridos por HELIOS
+
+El motor HELIOS puede sugerir indicadores automáticamente según las métricas detectadas.
+
+Ejemplo:
+
+Si detecta:
+
+ventas
+costos
+
+Puede sugerir:
+
+ventas totales
+costos totales
+margen
+% margen
+
+Si detecta:
+
+horas
+costo
+
+Puede sugerir:
+
+horas totales
+costo total
+costo por hora
+5. Intervención del usuario
+
+El sistema genera cálculos automáticamente, pero el usuario siempre puede:
+
+editar fórmulas
+crear nuevos KPI
+eliminar indicadores sugeridos
+
+Esto mantiene el principio fundamental de ÁMBAR BI:
+
+La IA asiste
+El usuario controla
+6. Relación con otros módulos
+
+El HELIOS Calculation Engine trabaja junto con:
+
+Data Interpreter
+Pattern Recognition
+KPI Builder
+Dashboard Builder
+
+Flujo:
+
+Dataset
+↓
+Interpretación de datos
+↓
+Identificación de métricas
+↓
+Generación de cálculos
+↓
+KPI
+↓
+Dashboard
+7. Objetivo final
+
+Permitir que el usuario pase de datos a análisis con el menor esfuerzo posible.
+
+Flujo ideal:
+
+datos
+↓
+HELIOS analiza
+↓
+HELIOS calcula indicadores
+↓
+dashboard listo

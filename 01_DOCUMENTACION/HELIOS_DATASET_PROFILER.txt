@@ -1,0 +1,168 @@
+HELIOS DATASET PROFILER
+
+El módulo HELIOS Dataset Profiler permite analizar un dataset completo y determinar qué tipo de estructura de negocio representa.
+
+Su objetivo es clasificar datasets antes de aplicar patrones de negocio, indicadores y dashboards.
+
+--------------------------------------------------
+
+1. OBJETIVO
+
+El Dataset Profiler debe identificar automáticamente:
+
+- tipo general de dataset
+- estructura dominante
+- posibles entidades principales
+- posibles métricas principales
+- posibles dimensiones principales
+
+Esto permite orientar al sistema hacia el patrón de negocio correcto.
+
+--------------------------------------------------
+
+2. ENTRADAS DEL PERFILADOR
+
+El perfilador analiza datasets provenientes de:
+
+- Excel
+- CSV
+- bases de datos
+- ERP
+- APIs
+
+Para el MVP se priorizarán datasets cargados desde Excel.
+
+--------------------------------------------------
+
+3. VARIABLES ANALIZADAS
+
+El perfilador revisa:
+
+- nombres de columnas
+- cantidad de columnas
+- cantidad de filas
+- frecuencia de campos repetidos
+- presencia de fechas
+- presencia de métricas numéricas
+- combinaciones de entidades
+- existencia de jerarquías
+
+--------------------------------------------------
+
+4. INDICADORES DE PERFIL
+
+El sistema buscará señales para identificar el tipo de dataset.
+
+Ejemplos:
+
+Si encuentra columnas como:
+proyecto
+OT
+tarea
+area
+HH
+costo
+
+podría clasificarlo como:
+PROJECT_OPERATIONS
+
+Si encuentra columnas como:
+cliente
+guardia
+turno
+horas
+servicio
+
+podría clasificarlo como:
+SERVICE_OUTSOURCING
+
+Si encuentra columnas como:
+producto
+venta
+cantidad
+vendedor
+cliente
+
+podría clasificarlo como:
+RETAIL_SALES
+
+Si encuentra columnas como:
+trabajador
+licencia
+vacaciones
+permiso
+fecha
+
+podría clasificarlo como:
+HR_OPERATIONS
+
+--------------------------------------------------
+
+5. LÓGICA DE PERFILAMIENTO
+
+El sistema asigna puntajes a los patrones según coincidencias encontradas en el dataset.
+
+Ejemplo:
+
+PROJECT_OPERATIONS = 85
+SERVICE_OUTSOURCING = 30
+RETAIL_SALES = 10
+
+El patrón con mayor puntuación es sugerido como el más probable.
+
+--------------------------------------------------
+
+6. RESULTADO DEL PERFILAMIENTO
+
+El sistema genera un resumen del dataset analizado.
+
+Ejemplo:
+
+Tipo probable de dataset:
+PROJECT_OPERATIONS
+
+Entidad principal detectada:
+proyecto
+
+Métricas detectadas:
+HH
+costos
+ventas
+
+Dimensiones detectadas:
+area
+fecha
+actividad
+
+--------------------------------------------------
+
+7. FUNCIÓN DENTRO DE HELIOS
+
+El Dataset Profiler se ejecuta después del análisis inicial del archivo y antes del reconocimiento final de patrones.
+
+Flujo:
+
+Lectura de archivo
+↓
+Análisis de columnas
+↓
+Perfilamiento de dataset
+↓
+Reconocimiento de patrón
+↓
+Construcción de matriz semántica
+↓
+Generación de KPI y dashboard
+
+--------------------------------------------------
+
+8. OBJETIVO DEL MVP
+
+El MVP debe permitir que HELIOS clasifique correctamente datasets básicos en categorías como:
+
+- proyectos
+- servicios
+- ventas
+- recursos humanos
+
+Esto permitirá validar la capacidad del sistema para adaptarse automáticamente a distintas empresas.

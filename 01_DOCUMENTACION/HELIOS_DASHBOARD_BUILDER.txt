@@ -1,0 +1,134 @@
+HELIOS DASHBOARD BUILDER
+
+El módulo HELIOS Dashboard Builder es el componente encargado de construir dashboards a partir de los indicadores generados por el sistema.
+
+Este módulo permite transformar indicadores de gestión en visualizaciones que faciliten el análisis de información por parte de los usuarios.
+
+--------------------------------------------------
+
+1. OBJETIVO
+
+El Dashboard Builder debe:
+
+- generar dashboards automáticamente
+- sugerir estructuras visuales
+- permitir ajustes por parte del usuario diseñador
+- generar dashboards listos para análisis ejecutivo
+
+--------------------------------------------------
+
+2. ESTRUCTURA DE DASHBOARD
+
+Un dashboard se compone de:
+
+indicadores clave (KPI)
+gráficos
+tablas
+filtros
+resúmenes
+
+Estos elementos permiten visualizar la información de forma clara.
+
+--------------------------------------------------
+
+3. TIPOS DE VISUALIZACIÓN
+
+Cada KPI puede representarse mediante distintos tipos de visualización.
+
+Tipos principales:
+
+tarjeta de indicador
+gráfico de barras
+gráfico de líneas
+tabla
+distribución porcentual
+
+La selección de visualización puede ser sugerida automáticamente por el sistema.
+
+--------------------------------------------------
+
+4. PLANTILLAS DE DASHBOARD
+
+El sistema puede generar dashboards utilizando plantillas base.
+
+Ejemplos:
+
+dashboard ejecutivo
+dashboard operativo
+dashboard financiero
+dashboard de ventas
+
+Estas plantillas permiten organizar la información de forma estandarizada.
+
+--------------------------------------------------
+
+5. INTERACCIÓN DEL USUARIO DISEÑADOR
+
+El usuario diseñador puede:
+
+seleccionar indicadores
+elegir tipo de gráfico
+organizar el layout del dashboard
+agregar filtros
+agregar tablas de detalle
+
+Esto permite adaptar el dashboard a las necesidades de la empresa.
+
+--------------------------------------------------
+
+6. USUARIO EJECUTIVO
+
+Los usuarios ejecutivos utilizan los dashboards para analizar información.
+
+Ellos pueden:
+
+navegar el dashboard
+aplicar filtros
+exportar información
+analizar indicadores
+
+Los usuarios ejecutivos no modifican la estructura del dashboard.
+
+--------------------------------------------------
+
+7. NAVEGACIÓN ANALÍTICA
+
+Los dashboards permiten analizar información desde un nivel general hasta un nivel detallado.
+
+Ejemplo:
+
+proyecto
+↓
+area
+↓
+actividad
+↓
+detalle operativo
+
+Esto permite analizar el origen de los resultados.
+
+--------------------------------------------------
+
+8. EXPORTACIÓN
+
+Los dashboards pueden exportarse en distintos formatos.
+
+Ejemplos:
+
+PDF
+Excel
+imagen
+
+Esto permite compartir información con otros usuarios.
+
+--------------------------------------------------
+
+9. OBJETIVO DEL MVP
+
+El MVP debe permitir que HELIOS genere automáticamente un dashboard básico a partir de un dataset analizado.
+
+Este dashboard debe incluir:
+
+indicadores principales
+gráficos básicos
+filtros de análisis

@@ -1,0 +1,159 @@
+AMBAR BI – PRINCIPIOS FUNDAMENTALES DEL SISTEMA
+1. HELIOS es un asistente, no el sistema
+
+HELIOS es el componente de inteligencia artificial dentro de ÁMBAR BI.
+
+Su función es ayudar al usuario a interactuar con los datos de forma más natural, rápida y dinámica.
+
+HELIOS no reemplaza el sistema ni toma control absoluto del análisis.
+
+HELIOS actúa como:
+
+asistente inteligente
+
+guía analítica
+
+intérprete de datos
+
+Dentro de ÁMBAR BI.
+
+En otras palabras:
+
+ÁMBAR BI es el sistema.
+HELIOS es el ayudante inteligente.
+2. HELIOS debe aprender del usuario
+
+HELIOS no debe ser un sistema estático.
+
+Debe mejorar su capacidad de interpretación a medida que el usuario interactúa con el sistema.
+
+Esto implica que HELIOS debe poder:
+
+aprender preferencias del usuario
+
+recordar configuraciones utilizadas
+
+reconocer patrones de análisis frecuentes
+
+anticipar KPI utilizados por el usuario
+
+Mientras más interactúe el usuario con ÁMBAR BI, más predictivo y útil se vuelve HELIOS.
+
+3. El control siempre es del usuario
+
+ÁMBAR BI está diseñado bajo el principio de:
+
+La IA ayuda.
+El usuario decide.
+
+HELIOS puede:
+
+sugerir KPI
+
+sugerir dashboards
+
+sugerir interpretaciones
+
+Pero el usuario siempre tiene la capacidad de:
+
+modificar resultados
+
+cambiar interpretaciones
+
+ajustar indicadores
+
+Esto genera confianza y control en el sistema.
+
+4. ÁMBAR BI es un software ejecutable
+
+ÁMBAR BI debe funcionar como una aplicación real.
+
+No solo como una herramienta web o un complemento.
+
+El sistema debe poder ejecutarse como:
+
+Aplicación de escritorio
+
+Y permitir:
+
+conexión a múltiples fuentes de datos
+
+actualización automática de información
+
+análisis continuo
+
+Esto permite que el sistema funcione de manera estable dentro de las empresas.
+
+5. Actualización de datos en tiempo real
+
+ÁMBAR BI debe ser capaz de actualizar información automáticamente.
+
+Esto puede incluir:
+
+actualización programada
+
+actualización manual
+
+actualización en tiempo real cuando los datos cambian
+
+Esto permite que los dashboards reflejen el estado actual del negocio.
+
+6. ÁMBAR BI no nace para competir con Power BI
+
+El objetivo de ÁMBAR BI no es ser un clon de Power BI ni una herramienta para crear dashboards complejos.
+
+Su propósito es diferente.
+
+ÁMBAR BI nace para:
+
+ayudar a usuarios que no son expertos en BI
+
+A entender el rendimiento de su negocio mediante análisis de datos.
+
+7. Simplicidad por sobre complejidad
+
+El sistema debe priorizar:
+
+facilidad de uso
+
+rapidez de análisis
+
+interacción simple
+
+Por sobre configuraciones técnicas complejas.
+
+El objetivo es que cualquier usuario pueda:
+
+cargar datos
+entender su negocio
+tomar decisiones
+
+Sin necesidad de conocimientos avanzados en análisis de datos.
+
+8. El foco del sistema es el análisis del negocio
+
+ÁMBAR BI no está diseñado para crear gráficos bonitos.
+
+Está diseñado para ayudar al usuario a responder preguntas como:
+
+¿Dónde estoy ganando dinero?
+¿Dónde estoy perdiendo dinero?
+¿Qué área está funcionando mejor?
+¿Qué proyecto está generando pérdidas?
+
+El objetivo final del sistema es:
+
+mejorar la comprensión del rendimiento operacional
+9. ÁMBAR BI es una herramienta de apoyo gerencial
+
+El sistema está diseñado para apoyar:
+
+gerentes
+
+supervisores
+
+administradores
+
+analistas operacionales
+
+A comprender el desempeño del negocio de forma rápida.

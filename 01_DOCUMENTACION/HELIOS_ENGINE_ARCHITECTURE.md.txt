@@ -1,0 +1,195 @@
+HELIOS ENGINE ARCHITECTURE
+
+1. Introducción
+
+HELIOS es el motor de inteligencia del sistema ÁMBAR BI.
+Su función es interpretar datasets provenientes de distintas fuentes y transformarlos en modelos analíticos que permitan generar indicadores y dashboards automáticamente.
+
+HELIOS se encarga de:
+
+- analizar datasets
+- interpretar la estructura de datos
+- reconocer patrones de negocio
+- construir la matriz semántica
+- generar KPI sugeridos
+- generar dashboards base
+
+--------------------------------------------------
+
+2. Componentes del motor HELIOS
+
+El motor HELIOS se compone de los siguientes módulos:
+
+1. Data Reader
+2. Data Analyzer
+3. Semantic Mapper
+4. Pattern Recognition Engine
+5. KPI Generator
+6. Dashboard Generator
+
+--------------------------------------------------
+
+3. Data Reader
+
+El módulo Data Reader se encarga de leer datos desde distintas fuentes.
+
+Fuentes soportadas inicialmente:
+
+- Excel
+- CSV
+- SQL
+- APIs
+- ERP
+
+Para el MVP se priorizará la lectura de archivos Excel.
+
+El Data Reader detecta:
+
+- hojas del archivo
+- filas
+- columnas
+- tipos de datos
+
+--------------------------------------------------
+
+4. Data Analyzer
+
+El Data Analyzer analiza la estructura del dataset.
+
+Funciones:
+
+- detectar encabezados
+- identificar columnas
+- identificar tipos de datos
+- detectar posibles relaciones
+
+Tipos de datos detectados:
+
+DATE
+TEXT
+NUMERIC
+IDENTIFIER
+
+--------------------------------------------------
+
+5. Semantic Mapper
+
+Este módulo interpreta el significado de las columnas.
+
+Ejemplo:
+
+cliente → ENTITY_CLIENT
+vendedor → ENTITY_PERSON
+producto → ENTITY_PRODUCT
+proyecto → ENTITY_PROJECT
+
+También identifica métricas:
+
+ventas → METRIC
+HH → METRIC
+costo → METRIC
+
+--------------------------------------------------
+
+6. Pattern Recognition Engine
+
+Este módulo compara el dataset con la biblioteca de patrones de negocio.
+
+Patrones iniciales:
+
+PROJECT_OPERATIONS
+SERVICE_OUTSOURCING
+RETAIL_SALES
+HR_OPERATIONS
+
+El sistema calcula un nivel de coincidencia entre el dataset y cada patrón.
+
+El patrón con mayor coincidencia es sugerido al usuario.
+
+--------------------------------------------------
+
+7. Construcción de la Matriz Semántica
+
+Una vez identificado el patrón de negocio, HELIOS construye la matriz semántica.
+
+La matriz está compuesta por:
+
+Entidades
+Eventos
+Métricas
+Dimensiones
+
+Esto permite analizar datos provenientes de distintas fuentes bajo una misma estructura conceptual.
+
+--------------------------------------------------
+
+8. Generación de KPI
+
+A partir de la matriz semántica, HELIOS propone indicadores de negocio.
+
+Ejemplo:
+
+Ventas totales
+Costos totales
+Margen
+HH utilizadas
+Costo por área
+
+Los KPI pueden ser activados o desactivados por el usuario diseñador.
+
+--------------------------------------------------
+
+9. Generación de dashboards
+
+El módulo Dashboard Generator crea dashboards base a partir de los KPI detectados.
+
+El usuario puede elegir:
+
+Dashboard ejecutivo
+Dashboard operativo
+Dashboard financiero
+
+El sistema propone visualizaciones automáticamente.
+
+--------------------------------------------------
+
+10. Aprendizaje del sistema
+
+HELIOS registra decisiones del usuario para mejorar futuros análisis.
+
+Esto permite:
+
+- mejorar el reconocimiento de columnas
+- mejorar la detección de patrones
+- mejorar la generación de KPI
+
+--------------------------------------------------
+
+11. Flujo completo del motor HELIOS
+
+Subir dataset
+↓
+Data Reader
+↓
+Data Analyzer
+↓
+Semantic Mapper
+↓
+Pattern Recognition
+↓
+Construcción matriz semántica
+↓
+Generación KPI
+↓
+Generación dashboard
+
+--------------------------------------------------
+
+12. Objetivo del MVP
+
+El MVP del sistema debe demostrar que HELIOS puede:
+
+- leer un Excel
+- interpretar su estructura
+- reconocer el patrón de negocio
+- generar un dashboard automáticamente

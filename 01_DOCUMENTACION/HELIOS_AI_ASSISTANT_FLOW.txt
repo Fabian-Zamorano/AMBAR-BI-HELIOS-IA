@@ -1,0 +1,164 @@
+HELIOS AI ASSISTANT FLOW
+
+Este documento describe el flujo de interacción entre HELIOS y el usuario para construir dashboards y análisis de datos.
+
+El objetivo es simplificar la creación de modelos analíticos mediante una conversación guiada.
+
+--------------------------------------------------
+
+1. INICIO DEL PROCESO
+
+Cuando el usuario inicia un nuevo análisis, HELIOS comienza una conversación guiada.
+
+HELIOS:
+Bienvenido a ÁMBAR BI.
+Voy a ayudarte a analizar los datos de tu empresa.
+
+--------------------------------------------------
+
+2. IDENTIFICACIÓN DEL NEGOCIO
+
+HELIOS realiza preguntas iniciales para entender el tipo de empresa.
+
+Ejemplo:
+
+¿A qué rubro pertenece tu empresa?
+
+Opciones sugeridas:
+
+construcción
+servicios
+retail
+industria
+otro
+
+--------------------------------------------------
+
+3. MODELO DE OPERACIÓN
+
+HELIOS identifica cómo funciona el negocio.
+
+Ejemplo:
+
+¿Tu empresa trabaja por proyectos?
+
+Sí
+No
+
+Si la respuesta es sí, HELIOS puede sugerir el patrón:
+
+PROJECT_OPERATIONS
+
+--------------------------------------------------
+
+4. ORIGEN DE LOS DATOS
+
+HELIOS pregunta cómo se almacenan los datos.
+
+Ejemplo:
+
+¿Dónde tienes tus datos?
+
+Excel
+ERP
+Base de datos
+Otro sistema
+
+--------------------------------------------------
+
+5. CARGA DE DATOS
+
+El usuario carga el archivo de datos.
+
+Ejemplo:
+
+Sube tu archivo Excel para comenzar el análisis.
+
+--------------------------------------------------
+
+6. ANÁLISIS AUTOMÁTICO
+
+HELIOS analiza el archivo utilizando:
+
+Excel Reader
+Data Interpreter
+Dataset Profiler
+
+El sistema detecta:
+
+columnas
+métricas
+dimensiones
+entidades
+
+--------------------------------------------------
+
+7. CONFIRMACIÓN DEL MODELO
+
+HELIOS presenta el modelo detectado.
+
+Ejemplo:
+
+He detectado que tu dataset contiene información de proyectos.
+
+Entidad principal:
+proyecto
+
+Métricas detectadas:
+
+HH
+costos
+ventas
+
+¿Es correcto?
+
+--------------------------------------------------
+
+8. GENERACIÓN DE KPI
+
+HELIOS propone indicadores.
+
+Ejemplo:
+
+HH totales
+costos proyecto
+margen proyecto
+costos por área
+
+El usuario puede seleccionar qué indicadores utilizar.
+
+--------------------------------------------------
+
+9. GENERACIÓN DE DASHBOARD
+
+HELIOS construye un dashboard inicial.
+
+El usuario puede:
+
+agregar gráficos
+cambiar visualizaciones
+organizar el dashboard
+
+--------------------------------------------------
+
+10. ENTREGA DEL DASHBOARD
+
+Una vez finalizado, el dashboard queda disponible para análisis ejecutivo.
+
+Los usuarios pueden:
+
+filtrar información
+analizar resultados
+exportar reportes
+
+--------------------------------------------------
+
+11. APRENDIZAJE DEL SISTEMA
+
+HELIOS registra las decisiones del usuario para mejorar futuros análisis.
+
+Esto permite mejorar:
+
+reconocimiento de datos
+sugerencia de indicadores
+sugerencia de dashboards

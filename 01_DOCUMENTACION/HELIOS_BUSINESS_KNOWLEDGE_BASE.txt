@@ -1,0 +1,182 @@
+HELIOS BUSINESS KNOWLEDGE BASE
+
+La base de conocimiento empresarial de HELIOS permite que el sistema comprenda cómo funcionan distintos tipos de empresas.
+
+Esta base de conocimiento permite interpretar datasets en el contexto del negocio al que pertenecen.
+
+--------------------------------------------------
+
+1. OBJETIVO
+
+Permitir que HELIOS entienda el contexto empresarial antes de analizar los datos.
+
+Esto mejora la interpretación de datasets y la generación de indicadores.
+
+--------------------------------------------------
+
+2. TIPOS DE NEGOCIO
+
+La base de conocimiento incluye distintos tipos de negocio.
+
+Ejemplos:
+
+CONSTRUCTION
+SHIPYARD
+SERVICE_COMPANY
+SECURITY_COMPANY
+RETAIL
+MANUFACTURING
+
+--------------------------------------------------
+
+3. MODELO DE OPERACIÓN
+
+Cada tipo de negocio tiene un modelo de operación característico.
+
+Ejemplo:
+
+CONSTRUCTION
+
+trabajo por obra
+control de materiales
+control de HH
+control de avance
+control de costos
+
+SHIPYARD
+
+trabajo por nave
+control de HH
+control de materiales
+servicios especializados
+control de margen
+
+SERVICE_COMPANY
+
+prestación de servicios
+control de personal
+control de horas
+facturación por servicio
+
+RETAIL
+
+ventas de productos
+control de inventario
+control de ventas
+análisis de productos
+
+--------------------------------------------------
+
+4. ENTIDADES TÍPICAS
+
+Cada tipo de empresa tiene entidades características.
+
+Ejemplo:
+
+CONSTRUCTION
+
+obra
+contrato
+proveedor
+material
+
+RETAIL
+
+producto
+cliente
+venta
+
+SERVICE_COMPANY
+
+cliente
+servicio
+personal
+
+--------------------------------------------------
+
+5. MÉTRICAS TÍPICAS
+
+Cada tipo de negocio utiliza métricas diferentes.
+
+Ejemplo:
+
+CONSTRUCTION
+
+HH utilizadas
+costos obra
+avance obra
+
+RETAIL
+
+ventas
+cantidad vendida
+margen
+
+SERVICE_COMPANY
+
+horas servicio
+facturación cliente
+costos servicio
+
+--------------------------------------------------
+
+6. KPI TÍPICOS
+
+El sistema puede sugerir indicadores según el tipo de empresa.
+
+Ejemplo:
+
+CONSTRUCTION
+
+avance obra
+costos obra
+margen obra
+
+RETAIL
+
+ventas por producto
+ventas por vendedor
+margen producto
+
+SERVICE_COMPANY
+
+horas por cliente
+facturación por cliente
+margen servicio
+
+--------------------------------------------------
+
+7. DASHBOARDS TÍPICOS
+
+Cada tipo de empresa suele utilizar dashboards específicos.
+
+Ejemplo:
+
+CONSTRUCTION
+
+dashboard proyecto
+dashboard costos
+dashboard avance
+
+RETAIL
+
+dashboard ventas
+dashboard productos
+dashboard vendedores
+
+SERVICE_COMPANY
+
+dashboard clientes
+dashboard servicios
+dashboard personal
+
+--------------------------------------------------
+
+8. FUNCIÓN EN HELIOS
+
+La base de conocimiento permite que HELIOS:
+
+comprenda el negocio del usuario
+interprete datasets en contexto
+sugiera KPI adecuados
+genere dashboards relevantes

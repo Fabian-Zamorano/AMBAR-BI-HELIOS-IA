@@ -1,0 +1,135 @@
+HELIOS DATASET MODEL
+PROJECT OPERATIONS
+
+Este documento describe el modelo de dataset utilizado por empresas que trabajan por proyectos.
+
+Este modelo se utiliza como referencia para que el motor HELIOS pueda reconocer datasets provenientes de empresas como:
+
+constructoras
+astilleros
+ingeniería
+mantenimiento industrial
+
+--------------------------------------------------
+
+1. ENTIDAD PRINCIPAL
+
+proyecto
+
+En este tipo de empresa cada proyecto representa una obra o trabajo ejecutado.
+
+Ejemplos:
+
+nave
+obra
+contrato
+faena
+
+--------------------------------------------------
+
+2. EVENTOS PRINCIPALES
+
+Los eventos representan actividades ejecutadas dentro del proyecto.
+
+Ejemplos:
+
+registro de horas
+consumo de materiales
+servicios de terceros
+ventas del proyecto
+
+--------------------------------------------------
+
+3. DATASETS TÍPICOS
+
+HH
+
+Columnas comunes:
+
+proyecto
+OT
+item
+area
+actividad
+tarea
+trabajador
+fecha
+HH
+
+--------------------------------------------------
+
+MATERIALES
+
+Columnas comunes:
+
+proyecto
+material
+cantidad
+costo
+fecha
+
+--------------------------------------------------
+
+TERCEROS
+
+Columnas comunes:
+
+proyecto
+proveedor
+servicio
+costo
+fecha
+
+--------------------------------------------------
+
+VENTAS
+
+Columnas comunes:
+
+proyecto
+cliente
+servicio
+monto
+fecha
+
+--------------------------------------------------
+
+4. MÉTRICAS PRINCIPALES
+
+HH utilizadas
+costos materiales
+costos terceros
+ventas proyecto
+margen proyecto
+
+--------------------------------------------------
+
+5. DIMENSIONES PRINCIPALES
+
+proyecto
+area
+actividad
+fecha
+proveedor
+cliente
+
+--------------------------------------------------
+
+6. INDICADORES TÍPICOS
+
+avance proyecto
+costo total proyecto
+HH totales
+margen proyecto
+costos por area
+costos por actividad
+
+--------------------------------------------------
+
+7. DASHBOARDS TÍPICOS
+
+dashboard general de proyecto
+dashboard HH
+dashboard costos
+dashboard margen
+dashboard avance de proyecto

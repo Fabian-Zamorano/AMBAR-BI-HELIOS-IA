@@ -1,0 +1,109 @@
+AMBAR BI PRODUCT STRATEGY
+
+Este documento define la estrategia de producto para ÁMBAR BI dentro del ecosistema ÁMBAR.
+
+ÁMBAR BI es una plataforma de inteligencia empresarial diseñada para facilitar el análisis de datos en empresas de cualquier tamaño.
+
+--------------------------------------------------
+
+1. DEFINICIÓN DEL PRODUCTO
+
+ÁMBAR BI es una herramienta de inteligencia empresarial que permite transformar datos operativos en información útil para la toma de decisiones.
+
+A diferencia de herramientas tradicionales de BI, ÁMBAR BI utiliza el motor HELIOS para interpretar datasets automáticamente y generar dashboards sin necesidad de configuraciones complejas.
+
+--------------------------------------------------
+
+2. PROPUESTA DE VALOR
+
+ÁMBAR BI ofrece:
+
+interpretación automática de datasets
+generación automática de indicadores
+generación automática de dashboards
+análisis simplificado para usuarios no técnicos
+
+Esto reduce significativamente la complejidad de herramientas tradicionales como Power BI.
+
+--------------------------------------------------
+
+3. MERCADO OBJETIVO
+
+ÁMBAR BI está dirigido a empresas que necesitan analizar datos pero no cuentan con equipos especializados en Business Intelligence.
+
+Segmentos principales:
+
+pequeñas empresas
+empresas medianas
+empresas que trabajan principalmente con Excel
+empresas que utilizan ERP pero no cuentan con herramientas de análisis avanzadas
+
+--------------------------------------------------
+
+4. CASOS DE USO
+
+ÁMBAR BI puede utilizarse en diferentes tipos de empresas.
+
+Ejemplos:
+
+constructoras
+astilleros
+empresas de servicios
+empresas de seguridad
+retail
+empresas industriales
+
+--------------------------------------------------
+
+5. VERSIONES DEL PRODUCTO
+
+El producto puede ofrecerse en diferentes versiones.
+
+Versión básica
+
+análisis de datos desde Excel
+generación de dashboards básicos
+
+Versión profesional
+
+integración con bases de datos
+modelos analíticos avanzados
+automatización de reportes
+
+Versión empresarial
+
+integración con ERP
+análisis avanzado
+dashboards personalizados
+
+--------------------------------------------------
+
+6. RELACIÓN CON EL ECOSISTEMA ÁMBAR
+
+ÁMBAR BI puede funcionar de forma independiente o integrarse con otros productos del ecosistema ÁMBAR.
+
+Integraciones posibles:
+
+ÁMBAR ERP
+ÁMBAR Constructoras
+otros módulos futuros del ecosistema
+
+Esto permite que ÁMBAR BI se convierta en el módulo analítico del ecosistema.
+
+--------------------------------------------------
+
+7. MODELO DE IMPLEMENTACIÓN
+
+El sistema puede ofrecerse bajo un modelo SaaS.
+
+Las empresas pueden acceder a ÁMBAR BI mediante suscripción.
+
+Esto permite ofrecer actualizaciones continuas y mejoras del sistema.
+
+--------------------------------------------------
+
+8. VISIÓN DEL PRODUCTO
+
+El objetivo a largo plazo es que ÁMBAR BI se convierta en una plataforma de análisis empresarial accesible y fácil de usar para empresas de cualquier tamaño.
+
+El motor HELIOS permitirá automatizar gran parte del proceso de análisis de datos.

@@ -1,0 +1,99 @@
+HELIOS LEARNING ENGINE
+
+El módulo HELIOS Learning Engine permite que el sistema aprenda de los datasets y decisiones de los usuarios para mejorar el reconocimiento de datos y la generación de análisis.
+
+--------------------------------------------------
+
+1. OBJETIVO
+
+Permitir que HELIOS mejore continuamente su capacidad para interpretar datasets y sugerir indicadores y dashboards.
+
+El aprendizaje se basa en el uso del sistema por parte de los usuarios.
+
+--------------------------------------------------
+
+2. FUENTES DE APRENDIZAJE
+
+El sistema aprende de:
+
+datasets cargados
+nombres de columnas
+estructuras de datos
+patrones detectados
+KPI seleccionados
+dashboards utilizados
+
+--------------------------------------------------
+
+3. APRENDIZAJE DE COLUMNAS
+
+HELIOS registra nombres de columnas utilizadas en datasets.
+
+Ejemplo:
+
+cliente
+razon_social
+empresa
+mandante
+
+Con el tiempo el sistema aprende que todos estos campos representan una misma entidad.
+
+--------------------------------------------------
+
+4. APRENDIZAJE DE PATRONES
+
+HELIOS analiza datasets de diferentes empresas para identificar patrones de negocio.
+
+Ejemplo:
+
+empresas de construcción
+empresas de servicios
+empresas de retail
+
+Esto mejora la capacidad del sistema para clasificar datasets automáticamente.
+
+--------------------------------------------------
+
+5. APRENDIZAJE DE KPI
+
+El sistema registra qué indicadores utilizan más los usuarios.
+
+Ejemplo:
+
+ventas totales
+costos proyecto
+HH utilizadas
+margen proyecto
+
+Estos indicadores pueden ser sugeridos automáticamente a nuevos usuarios.
+
+--------------------------------------------------
+
+6. APRENDIZAJE DE DASHBOARDS
+
+HELIOS registra qué dashboards son más utilizados por tipo de empresa.
+
+Ejemplo:
+
+dashboard ventas
+dashboard proyectos
+dashboard recursos humanos
+
+Esto permite sugerir dashboards más relevantes para cada tipo de empresa.
+
+--------------------------------------------------
+
+7. MEJORA DEL SISTEMA
+
+El aprendizaje acumulado permite mejorar:
+
+reconocimiento de columnas
+reconocimiento de patrones
+sugerencia de KPI
+sugerencia de dashboards
+
+--------------------------------------------------
+
+8. OBJETIVO A LARGO PLAZO
+
+El objetivo es que HELIOS se convierta en un motor de análisis empresarial que mejore continuamente con el uso del sistema.

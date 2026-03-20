@@ -1,0 +1,191 @@
+HELIOS DASHBOARD GENERATION ENGINE
+
+Purpose
+
+The Dashboard Generation Engine is responsible for transforming generated KPI into structured visual dashboards.
+
+This engine converts analytical indicators into visual representations that allow users to quickly understand operational performance.
+
+Unlike traditional BI tools that require manual configuration of charts and fields, this engine automatically selects appropriate visualizations based on the detected KPI structure.
+
+The goal is to reduce complexity and allow non-technical users to generate meaningful dashboards with minimal interaction.
+
+Core Responsibilities
+
+The engine performs the following tasks:
+
+- Select appropriate visualization types
+- Organize KPI into dashboard layouts
+- Group related indicators
+- Generate interactive dashboards
+
+HELIOS assists this engine by understanding business context and selecting the most relevant visual structures.
+
+Visualization Selection
+
+The system determines the most appropriate chart type based on the structure of the KPI.
+
+KPI Types and Suggested Visualizations
+
+Single aggregated metric
+
+Example:
+Total Sales
+Total Cost
+Total Hours
+
+Visualization:
+KPI Card
+
+Grouped metrics by dimension
+
+Example:
+Sales by Client
+Costs by Project
+Hours by Department
+
+Visualization:
+Bar Chart
+Column Chart
+
+Time-based indicators
+
+Example:
+Sales by Month
+Revenue by Year
+Costs over Time
+
+Visualization:
+Line Chart
+Area Chart
+
+Contribution indicators
+
+Example:
+Sales Contribution by Client
+Cost Contribution by Department
+
+Visualization:
+Pie Chart
+Donut Chart
+Stacked Bar Chart
+
+Ranking indicators
+
+Example:
+Top Clients
+Top Products
+Highest Cost Projects
+
+Visualization:
+Sorted Bar Chart
+Top List
+
+Dashboard Layout Structure
+
+The engine organizes dashboard components into logical sections.
+
+Typical layout structure:
+
+Top Section
+
+High-level indicators.
+
+Examples:
+Total Sales
+Total Cost
+Total Hours
+Average Performance
+
+These appear as KPI cards.
+
+Middle Section
+
+Comparative visualizations.
+
+Examples:
+Sales by Client
+Costs by Department
+Hours by Project
+
+These appear as bar or column charts.
+
+Time Analysis Section
+
+Trend analysis.
+
+Examples:
+Sales over time
+Costs by month
+Hours by week
+
+These appear as line charts.
+
+Detail Section
+
+Tabular information for deeper analysis.
+
+Examples:
+Transaction table
+Project breakdown
+Client list
+
+These appear as tables or data grids.
+
+Dashboard Templates
+
+The engine may apply predefined dashboard templates depending on the detected business context.
+
+Examples of template types:
+
+Sales Dashboard
+Operational Dashboard
+Project Performance Dashboard
+Financial Overview Dashboard
+Human Resources Dashboard
+
+Templates define how KPI are grouped and visualized.
+
+HELIOS may automatically select the most appropriate template.
+
+Interactivity
+
+Generated dashboards must support interactive exploration.
+
+Common interactions include:
+
+- filtering
+- sorting
+- drill-down analysis
+- cross-filtering between visualizations
+
+This allows users to explore data without needing technical skills.
+
+User Adjustments
+
+Although dashboards are generated automatically, users must be able to modify:
+
+- visualization type
+- layout arrangement
+- displayed KPI
+
+This ensures users maintain control over the final analysis.
+
+Dashboard Generation Workflow
+
+The dashboard creation process follows this sequence:
+
+KPI Library available
+Relevant KPI selected
+Visualization types assigned
+Dashboard layout constructed
+Interactive elements added
+Dashboard generated
+
+The final dashboard is presented to the user for exploration and refinement.
+
+System Outcome
+
+The Dashboard Generation Engine transforms analytical indicators into structured visual dashboards.
+
+This allows users to quickly interpret business performance and identify operational patterns without manual dashboard construction.

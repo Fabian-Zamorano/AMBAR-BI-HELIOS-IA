@@ -1,0 +1,211 @@
+AMBAR BI + HELIOS IA
+MASTER PLAN DEL PROYECTO
+
+VISIÓN DEL PROYECTO
+
+ÁMBAR BI es una plataforma de inteligencia empresarial diseñada para permitir que empresas de cualquier tamaño puedan analizar sus datos sin necesidad de conocimientos técnicos avanzados en Business Intelligence.
+
+El sistema se basa en el motor HELIOS, un motor de inteligencia que permite interpretar datos provenientes de diferentes fuentes y transformarlos en información útil para la toma de decisiones.
+
+El objetivo principal es que el sistema se adapte al negocio del usuario y no que el usuario tenga que adaptarse a una herramienta compleja.
+
+El sistema permitirá:
+
+importar datos desde Excel, bases de datos o ERP
+
+interpretar automáticamente la estructura de los datos
+
+identificar patrones de negocio
+
+generar indicadores de gestión (KPI)
+
+generar dashboards ejecutivos automáticamente
+
+PRINCIPIOS DEL SISTEMA
+
+ÁMBAR BI se construye sobre los siguientes principios fundamentales.
+
+ADAPTABILIDAD
+El sistema debe poder trabajar con diferentes tipos de empresas y diferentes fuentes de datos.
+
+Debe aceptar datos provenientes de:
+
+Excel
+
+CSV
+
+bases de datos SQL
+
+sistemas ERP
+
+APIs externas
+
+INTERPRETACIÓN AUTOMÁTICA
+El sistema no debe requerir que el usuario configure manualmente modelos de datos complejos.
+
+HELIOS debe poder detectar automáticamente:
+
+entidades del negocio
+
+métricas
+
+dimensiones
+
+relaciones entre datos
+
+CONSTRUCCIÓN ASISTIDA
+El usuario no debe construir dashboards desde cero.
+
+El sistema debe sugerir:
+
+modelos de análisis
+
+indicadores
+
+estructuras de dashboards
+
+ORIENTACIÓN EJECUTIVA
+El sistema debe permitir que:
+
+analistas construyan dashboards
+
+gerencias utilicen los dashboards para análisis y toma de decisiones
+
+ARQUITECTURA GENERAL DEL SISTEMA
+
+El sistema ÁMBAR BI se compone de los siguientes módulos principales:
+
+Data Connect
+
+Data Intake
+
+HELIOS Engine
+
+Semantic Data Matrix
+
+Pattern Recognition Engine
+
+KPI Builder
+
+Dashboard Builder
+
+Publication Layer
+
+Cada módulo cumple una función específica dentro del flujo de análisis de datos.
+
+MOTOR HELIOS
+
+HELIOS es el motor de inteligencia del sistema.
+
+Sus funciones principales son:
+
+leer datasets provenientes de distintas fuentes
+
+detectar la estructura de los datos
+
+reconocer patrones de negocio
+
+construir una matriz semántica de análisis
+
+generar indicadores de gestión (KPI)
+
+generar dashboards sugeridos
+
+HELIOS permite automatizar gran parte del proceso de análisis de datos.
+
+BIBLIOTECA DE PATRONES DE NEGOCIO
+
+El sistema utiliza patrones de negocio para interpretar datasets.
+
+Los patrones iniciales definidos para el sistema son:
+
+PROJECT_OPERATIONS
+SERVICE_OUTSOURCING
+RETAIL_SALES
+HR_OPERATIONS
+
+Cada patrón describe cómo funcionan los datos dentro de un tipo de empresa.
+
+Ejemplo:
+
+PROJECT_OPERATIONS
+utilizado para constructoras, astilleros y empresas que trabajan por proyectos.
+
+SERVICE_OUTSOURCING
+utilizado para empresas que prestan servicios a otras empresas.
+
+MATRIZ SEMÁNTICA ÁMBAR
+
+Todos los datos importados por el sistema se transforman en una matriz semántica.
+
+La matriz semántica se compone de cuatro elementos principales:
+
+ENTIDADES
+representan elementos del negocio.
+
+Ejemplo:
+
+cliente
+proyecto
+producto
+trabajador
+
+EVENTOS
+representan acciones dentro del negocio.
+
+Ejemplo:
+
+venta
+servicio prestado
+ejecución de proyecto
+
+MÉTRICAS
+representan valores que pueden medirse.
+
+Ejemplo:
+
+ventas
+costos
+horas trabajadas
+
+DIMENSIONES
+representan formas de analizar los datos.
+
+Ejemplo:
+
+fecha
+área
+cliente
+proyecto
+
+OBJETIVO DEL MVP
+
+El MVP (Minimum Viable Product) del sistema debe demostrar que HELIOS es capaz de:
+
+leer un archivo Excel
+
+analizar la estructura de los datos
+
+identificar el patrón de negocio del dataset
+
+generar automáticamente un dashboard básico
+
+Este MVP permitirá validar la viabilidad técnica del proyecto.
+
+DATASETS INICIALES PARA PRUEBAS
+
+El desarrollo inicial del sistema se basará en datasets reales provenientes de:
+
+Astillero
+modelo de operación basado en proyectos.
+
+Empresa de seguridad
+modelo de servicios prestados a clientes.
+
+Estos datasets permitirán desarrollar los primeros patrones de negocio del sistema.
+
+OBJETIVO DEL PROYECTO
+
+El objetivo final de ÁMBAR BI es construir una plataforma de inteligencia empresarial adaptable que permita a las empresas analizar sus datos de forma simple, rápida y automatizada.
+
+El sistema busca reducir la complejidad de las herramientas tradicionales de Business Intelligence y facilitar el acceso al análisis de datos para todo tipo de organizaciones.

@@ -1,0 +1,135 @@
+MVP TECHNICAL ARCHITECTURE
+AMBAR BI + HELIOS IA
+
+Este documento describe la arquitectura técnica del MVP (Minimum Viable Product) de ÁMBAR BI.
+
+El objetivo del MVP es validar el funcionamiento del motor HELIOS para interpretar datasets y generar dashboards automáticamente.
+
+--------------------------------------------------
+
+1. OBJETIVO DEL MVP
+
+El MVP debe demostrar que el sistema puede:
+
+- cargar datasets
+- interpretar columnas
+- reconocer el tipo de negocio
+- generar indicadores
+- construir dashboards básicos
+
+--------------------------------------------------
+
+2. COMPONENTES PRINCIPALES
+
+El MVP se compone de los siguientes módulos:
+
+Data Input
+Excel Reader
+Data Interpreter
+Dataset Profiler
+Pattern Recognition
+KPI Builder
+Dashboard Builder
+
+--------------------------------------------------
+
+3. FLUJO DEL SISTEMA
+
+El flujo del sistema será el siguiente:
+
+Usuario carga dataset
+↓
+Excel Reader analiza el archivo
+↓
+Data Interpreter clasifica columnas
+↓
+Dataset Profiler identifica estructura
+↓
+Pattern Recognition identifica patrón de negocio
+↓
+KPI Builder genera indicadores
+↓
+Dashboard Builder genera dashboard
+
+--------------------------------------------------
+
+4. TECNOLOGÍAS DEL MVP
+
+Backend
+
+Python
+
+Bibliotecas principales:
+
+pandas
+numpy
+
+Procesamiento de datos:
+
+pandas
+
+Generación de dashboards:
+
+streamlit
+
+Base de datos:
+
+SQLite o PostgreSQL
+
+--------------------------------------------------
+
+5. ESTRUCTURA DEL PROYECTO
+
+La estructura del proyecto podría organizarse de la siguiente manera:
+
+AMBAR_BI
+
+backend
+helios_engine
+excel_reader
+data_interpreter
+dataset_profiler
+pattern_recognition
+kpi_builder
+dashboard_builder
+
+datasets_prueba
+
+dashboards
+
+app.py
+
+--------------------------------------------------
+
+6. DATASETS DE PRUEBA
+
+El MVP utilizará datasets reales para validar el sistema.
+
+Ejemplos:
+
+Astillero
+
+HH
+Materiales
+Terceros
+Ventas
+
+Empresa de seguridad
+
+Clientes
+Guardias
+Turnos
+Horas
+
+--------------------------------------------------
+
+7. RESULTADO ESPERADO
+
+El sistema debe ser capaz de:
+
+leer datasets
+interpretar datos
+generar indicadores
+generar dashboards básicos
+
+Esto permitirá validar el funcionamiento del motor HELIOS.

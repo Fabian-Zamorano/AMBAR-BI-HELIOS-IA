@@ -1,0 +1,130 @@
+HELIOS EXCEL READER
+
+El módulo HELIOS Excel Reader es el componente encargado de leer archivos Excel cargados por el usuario y extraer su estructura de datos para su posterior análisis.
+
+Este módulo es el primer paso en el procesamiento de datasets dentro de ÁMBAR BI.
+
+--------------------------------------------------
+
+1. OBJETIVO
+
+El objetivo del Excel Reader es:
+
+- abrir archivos Excel
+- detectar hojas del archivo
+- identificar columnas
+- identificar tipos de datos
+- preparar el dataset para su análisis posterior
+
+--------------------------------------------------
+
+2. ESTRUCTURA DE ARCHIVOS EXCEL
+
+Los archivos Excel pueden contener múltiples hojas.
+
+Ejemplo:
+
+HH
+MATERIALES
+TERCEROS
+VENTAS
+
+Cada hoja puede representar un tipo diferente de evento dentro del negocio.
+
+--------------------------------------------------
+
+3. DETECCIÓN DE HOJAS
+
+El sistema debe identificar automáticamente todas las hojas dentro del archivo Excel.
+
+Para cada hoja se registra:
+
+nombre de la hoja
+cantidad de filas
+cantidad de columnas
+
+--------------------------------------------------
+
+4. DETECCIÓN DE ENCABEZADOS
+
+El sistema debe detectar la fila que contiene los encabezados de columna.
+
+Los encabezados representan los nombres de los campos del dataset.
+
+Ejemplo:
+
+proyecto
+OT
+actividad
+area
+HH
+costo
+fecha
+
+--------------------------------------------------
+
+5. CLASIFICACIÓN DE COLUMNAS
+
+Cada columna detectada debe clasificarse según su tipo de dato.
+
+Tipos posibles:
+
+DATE
+TEXT
+NUMERIC
+IDENTIFIER
+
+Ejemplo:
+
+fecha → DATE
+HH → NUMERIC
+costo → NUMERIC
+proyecto → TEXT
+
+--------------------------------------------------
+
+6. GENERACIÓN DE DATASET INTERNO
+
+Una vez analizado el archivo Excel, el sistema debe construir un dataset interno que será utilizado por HELIOS para interpretar los datos.
+
+Este dataset interno contiene:
+
+nombre de hoja
+columnas detectadas
+tipos de datos
+estructura de filas
+
+--------------------------------------------------
+
+7. INTEGRACIÓN CON HELIOS
+
+El Excel Reader entrega el dataset procesado al módulo HELIOS Data Interpreter.
+
+Flujo:
+
+Carga de Excel
+↓
+HELIOS Excel Reader
+↓
+HELIOS Data Interpreter
+↓
+HELIOS Dataset Profiler
+↓
+Reconocimiento de patrón
+↓
+Generación de KPI
+↓
+Generación de Dashboard
+
+--------------------------------------------------
+
+8. OBJETIVO DEL MVP
+
+El MVP debe permitir:
+
+- cargar archivos Excel
+- detectar hojas
+- detectar columnas
+- detectar tipos de datos
+
+Esto permitirá que HELIOS pueda comenzar el proceso de interpretación de datos.

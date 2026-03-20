@@ -1,0 +1,192 @@
+HELIOS PATTERN LIBRARY
+
+Este documento define los patrones de negocio que el motor HELIOS puede reconocer automáticamente al analizar un dataset.
+
+Los patrones permiten identificar el tipo de empresa y generar automáticamente indicadores y dashboards adecuados.
+
+--------------------------------------------------
+
+1. PROJECT_OPERATIONS
+
+Este patrón corresponde a empresas que trabajan por proyectos.
+
+Ejemplos de empresas:
+
+- constructoras
+- astilleros
+- empresas de ingeniería
+- empresas de mantenimiento industrial
+
+Características del dataset:
+
+entidad principal:
+proyecto
+
+dimensiones comunes:
+
+proyecto
+area
+actividad
+tarea
+fecha
+
+métricas comunes:
+
+horas hombre
+costos
+materiales
+terceros
+ventas
+
+indicadores típicos:
+
+avance proyecto
+costo real vs presupuesto
+HH utilizadas
+margen por proyecto
+costos por area
+
+dashboards sugeridos:
+
+dashboard proyecto
+dashboard HH
+dashboard costos
+dashboard avance obra
+
+--------------------------------------------------
+
+2. SERVICE_OUTSOURCING
+
+Este patrón corresponde a empresas que prestan servicios a otras empresas.
+
+Ejemplos:
+
+empresa de seguridad
+empresa de limpieza
+outsourcing de personal
+empresa de mantenimiento
+
+entidades principales:
+
+cliente
+servicio
+personal
+
+dimensiones:
+
+cliente
+servicio
+turno
+fecha
+area
+
+métricas:
+
+horas trabajadas
+cantidad personal
+facturación
+costos
+
+indicadores típicos:
+
+horas por cliente
+facturación por cliente
+costo personal
+margen servicio
+
+dashboards sugeridos:
+
+dashboard clientes
+dashboard personal
+dashboard servicios
+dashboard facturación
+
+--------------------------------------------------
+
+3. RETAIL_SALES
+
+Este patrón corresponde a empresas que venden productos.
+
+Ejemplos:
+
+tiendas
+cafeterías
+restaurantes
+comercio
+
+entidades principales:
+
+producto
+cliente
+venta
+
+dimensiones:
+
+producto
+fecha
+vendedor
+sucursal
+
+métricas:
+
+ventas
+cantidad vendida
+costos
+margen
+
+indicadores típicos:
+
+ventas por producto
+ventas por vendedor
+ventas por periodo
+margen de venta
+
+dashboards sugeridos:
+
+dashboard ventas
+dashboard productos
+dashboard vendedores
+
+--------------------------------------------------
+
+4. HR_OPERATIONS
+
+Este patrón corresponde a análisis de recursos humanos.
+
+entidades:
+
+trabajador
+area
+cargo
+
+dimensiones:
+
+area
+cargo
+fecha
+
+métricas:
+
+horas trabajadas
+ausencias
+licencias
+vacaciones
+
+indicadores:
+
+dotación
+ausentismo
+horas extras
+distribución personal
+
+dashboards sugeridos:
+
+dashboard dotación
+dashboard asistencia
+dashboard distribución personal
+
+--------------------------------------------------
+
+El motor HELIOS utiliza esta biblioteca para comparar los datasets cargados por el usuario y determinar qué patrón de negocio se ajusta mejor a la estructura de datos.
+
+Una vez identificado el patrón, el sistema puede sugerir automáticamente indicadores y dashboards.

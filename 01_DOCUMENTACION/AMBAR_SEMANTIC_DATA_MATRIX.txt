@@ -1,0 +1,183 @@
+AMBAR SEMANTIC DATA MATRIX
+
+La matriz semántica de ÁMBAR BI define la estructura universal con la que HELIOS interpreta cualquier dataset cargado por el usuario.
+
+El objetivo de esta matriz es transformar datos provenientes de distintas fuentes en una estructura analítica común que permita generar indicadores y dashboards automáticamente.
+
+--------------------------------------------------
+
+1. ENTIDADES
+
+Las entidades representan los objetos principales del negocio.
+
+Ejemplos de entidades:
+
+cliente
+proyecto
+producto
+trabajador
+proveedor
+servicio
+area
+
+Las entidades permiten identificar quién participa en los eventos del negocio.
+
+--------------------------------------------------
+
+2. EVENTOS
+
+Los eventos representan acciones que ocurren dentro del negocio.
+
+Ejemplos:
+
+venta
+servicio prestado
+ejecución de proyecto
+registro de horas
+compra de materiales
+
+Los eventos conectan entidades con métricas.
+
+--------------------------------------------------
+
+3. MÉTRICAS
+
+Las métricas representan valores medibles del negocio.
+
+Ejemplos:
+
+ventas
+costos
+horas hombre
+cantidad vendida
+cantidad producida
+
+Las métricas permiten construir indicadores.
+
+--------------------------------------------------
+
+4. DIMENSIONES
+
+Las dimensiones permiten analizar las métricas desde distintos ángulos.
+
+Ejemplos:
+
+fecha
+cliente
+proyecto
+producto
+area
+vendedor
+
+Las dimensiones permiten agrupar y segmentar los datos.
+
+--------------------------------------------------
+
+5. RELACIONES
+
+Las relaciones conectan entidades, eventos y métricas.
+
+Ejemplo:
+
+proyecto
+    └── evento: ejecución de proyecto
+            └── métrica: horas hombre
+
+cliente
+    └── evento: venta
+            └── métrica: monto de venta
+
+--------------------------------------------------
+
+6. ESTRUCTURA UNIVERSAL DE DATOS
+
+Todo dataset analizado por HELIOS se transforma internamente en la siguiente estructura:
+
+ENTIDAD
+EVENTO
+METRICA
+DIMENSION
+
+Esta estructura permite que datasets completamente distintos puedan analizarse bajo un mismo modelo conceptual.
+
+--------------------------------------------------
+
+7. EJEMPLO APLICADO
+
+Ejemplo 1: Astillero
+
+Entidad:
+proyecto
+
+Evento:
+ejecución de trabajo
+
+Métricas:
+horas hombre
+costos
+materiales
+terceros
+
+Dimensiones:
+area
+fecha
+actividad
+
+--------------------------------------------------
+
+Ejemplo 2: Empresa de seguridad
+
+Entidad:
+cliente
+
+Evento:
+servicio prestado
+
+Métricas:
+horas trabajadas
+cantidad de guardias
+facturación
+
+Dimensiones:
+cliente
+fecha
+turno
+
+--------------------------------------------------
+
+Ejemplo 3: Retail
+
+Entidad:
+producto
+
+Evento:
+venta
+
+Métricas:
+ventas
+cantidad vendida
+margen
+
+Dimensiones:
+fecha
+vendedor
+sucursal
+
+--------------------------------------------------
+
+8. FUNCIÓN DE HELIOS
+
+HELIOS analiza los datasets cargados por el usuario y realiza las siguientes tareas:
+
+1. identificar entidades
+2. identificar eventos
+3. identificar métricas
+4. identificar dimensiones
+
+Luego transforma el dataset en la matriz semántica ÁMBAR.
+
+Esta matriz permite generar automáticamente:
+
+indicadores
+dashboards
+análisis comparativos

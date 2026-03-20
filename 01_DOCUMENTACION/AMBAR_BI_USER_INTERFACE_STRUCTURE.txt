@@ -1,0 +1,140 @@
+AMBAR BI USER INTERFACE STRUCTURE
+
+Purpose
+
+This document defines the visual structure and navigation model of the AMBAR BI application.
+
+The objective is to provide a clear, intuitive interface that allows users without technical expertise to analyze their business data efficiently.
+
+Unlike traditional BI tools that focus on technical configuration, AMBAR BI focuses on analytical interaction guided by HELIOS.
+
+Main Interface Philosophy
+
+The interface should prioritize simplicity and analytical guidance.
+
+Instead of asking users to build dashboards manually, the system should guide them through analytical questions.
+
+Primary question presented to the user:
+
+What do you want to analyze?
+
+This approach reduces technical complexity and encourages exploratory analysis.
+
+Main Application Sections
+
+The application interface is organized into five main areas.
+
+1. Main Header
+
+Located at the top of the application.
+
+Contains:
+
+Application name
+Company name
+Active workspace
+User profile
+Notifications
+Settings
+
+Example:
+
+AMBAR BI – Intelligent Business Analytics
+
+2. Navigation Panel
+
+Located on the left side of the application.
+
+Provides access to core system sections.
+
+Navigation options may include:
+
+Home
+Data Sources
+Datasets
+Analyses
+Dashboards
+Reports
+Settings
+
+This panel allows users to navigate the system easily.
+
+3. HELIOS Assistant Panel
+
+This panel contains the HELIOS Analysis Assistant.
+
+Users can interact with HELIOS through:
+
+analysis requests
+guided analysis selection
+system suggestions
+
+Example interaction:
+
+What do you want to analyze?
+
+Analyze sales
+Analyze projects
+Analyze operations
+Analyze financial performance
+
+HELIOS interprets the request and generates the appropriate analysis.
+
+4. Workspace Area
+
+The central area of the application.
+
+This is where dashboards and analyses are displayed.
+
+Content that may appear here includes:
+
+dashboards
+charts
+tables
+analytical summaries
+drill-down visualizations
+
+Users can interact with visualizations through filtering and exploration.
+
+5. Data Management Section
+
+This section allows users to manage their data sources.
+
+Users may:
+
+import Excel files
+connect databases
+connect ERP systems
+manage datasets
+
+The system validates and profiles datasets automatically.
+
+User Workflow
+
+The expected user workflow is simple and intuitive.
+
+Typical workflow:
+
+open AMBAR BI
+select or import data
+request an analysis
+review generated dashboards
+explore insights
+
+The system handles most technical processes automatically.
+
+Interface Principles
+
+The design of AMBAR BI should follow these principles:
+
+simplicity
+clarity
+minimal configuration
+analytical guidance
+user control over results
+
+Users should feel that HELIOS performs most of the technical work while they maintain control over their analysis.
+
+Outcome
+
+The interface of AMBAR BI should allow users to move quickly from raw data to business insight without needing advanced technical skills.

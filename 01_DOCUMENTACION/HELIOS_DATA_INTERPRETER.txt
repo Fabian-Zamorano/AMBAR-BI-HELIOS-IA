@@ -1,0 +1,125 @@
+HELIOS DATA INTERPRETER
+
+El módulo HELIOS Data Interpreter es el componente encargado de analizar datasets cargados por el usuario y detectar automáticamente la estructura de los datos.
+
+Este módulo permite interpretar datasets provenientes de distintas fuentes y convertirlos en la matriz semántica utilizada por ÁMBAR BI.
+
+--------------------------------------------------
+
+1. OBJETIVO
+
+El objetivo del Data Interpreter es identificar automáticamente:
+
+- entidades
+- eventos
+- métricas
+- dimensiones
+
+Esto permite que el sistema pueda generar análisis y dashboards sin que el usuario tenga que construir manualmente modelos de datos.
+
+--------------------------------------------------
+
+2. ANÁLISIS DE DATASET
+
+Cuando un dataset es cargado al sistema, HELIOS realiza los siguientes pasos:
+
+1. detectar hojas del archivo
+2. identificar encabezados
+3. identificar columnas
+4. clasificar tipos de datos
+5. analizar relaciones entre columnas
+
+--------------------------------------------------
+
+3. CLASIFICACIÓN DE COLUMNAS
+
+Cada columna es clasificada según su tipo de dato.
+
+Tipos posibles:
+
+DATE
+TEXT
+NUMERIC
+IDENTIFIER
+
+Ejemplo:
+
+fecha → DATE
+cliente → TEXT
+venta → NUMERIC
+
+--------------------------------------------------
+
+4. INTERPRETACIÓN SEMÁNTICA
+
+Luego de clasificar los datos, HELIOS intenta interpretar el significado de cada columna.
+
+Ejemplo:
+
+cliente → ENTITY_CLIENT
+producto → ENTITY_PRODUCT
+vendedor → ENTITY_PERSON
+proyecto → ENTITY_PROJECT
+
+--------------------------------------------------
+
+5. DETECCIÓN DE MÉTRICAS
+
+Las columnas numéricas son analizadas para determinar si representan métricas del negocio.
+
+Ejemplos:
+
+ventas
+costos
+horas hombre
+cantidad vendida
+
+Estas columnas pueden utilizarse para construir indicadores.
+
+--------------------------------------------------
+
+6. DETECCIÓN DE DIMENSIONES
+
+Las columnas que permiten segmentar los datos se clasifican como dimensiones.
+
+Ejemplos:
+
+fecha
+cliente
+proyecto
+area
+vendedor
+
+--------------------------------------------------
+
+7. DETECCIÓN DE EVENTOS
+
+El sistema identifica el evento principal representado por el dataset.
+
+Ejemplos:
+
+venta
+servicio prestado
+ejecución de proyecto
+registro de horas
+
+--------------------------------------------------
+
+8. TRANSFORMACIÓN A MATRIZ SEMÁNTICA
+
+Una vez analizado el dataset, HELIOS transforma los datos en la estructura de la matriz semántica de ÁMBAR BI.
+
+Esto permite unificar datasets de diferentes orígenes bajo una misma estructura analítica.
+
+--------------------------------------------------
+
+9. RESULTADO DEL ANÁLISIS
+
+Al finalizar el análisis, el sistema obtiene:
+
+- entidades detectadas
+- eventos detectados
+- métricas detectadas
+- dimensiones detectadas
+
+Esta información se utiliza para reconocer el patrón de negocio y generar dashboards automáticamente.

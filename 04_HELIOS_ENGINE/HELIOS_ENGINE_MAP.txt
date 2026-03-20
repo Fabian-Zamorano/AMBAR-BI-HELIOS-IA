@@ -1,0 +1,145 @@
+HELIOS ENGINE MAP
+
+Purpose
+
+This document describes the internal architecture of the HELIOS analytical engine used in AMBAR BI.
+
+HELIOS is responsible for interpreting business data, generating KPI, building dashboards, and assisting the user in analytical exploration.
+
+The engine is composed of multiple modules that work sequentially to transform raw data into business insights.
+
+Engine Architecture Overview
+
+The HELIOS engine operates as a processing pipeline composed of several analytical modules.
+
+Each module performs a specific task in the transformation of raw datasets into structured analytical outputs.
+
+Data Processing Pipeline
+
+DATA CONNECTOR
+
+Responsible for importing data from external sources.
+
+Supported sources may include:
+
+Excel
+CSV
+Databases
+ERP systems
+APIs
+
+The connector converts external data into internal datasets.
+
+↓
+
+DATA VALIDATION ENGINE
+
+Validates dataset structure and detects common data problems.
+
+Examples of detected issues:
+
+missing headers
+empty columns
+invalid data formats
+duplicate rows
+inconsistent values
+
+The engine proposes corrections and normalizes the dataset.
+
+↓
+
+DATASET PROFILER
+
+Analyzes the structure and statistical properties of the dataset.
+
+This module identifies:
+
+column types
+value distributions
+potential dimensions
+potential metrics
+date fields
+
+The profiler provides metadata used by subsequent engines.
+
+↓
+
+DATA INTERPRETER
+
+The interpreter assigns semantic meaning to dataset fields.
+
+Examples:
+
+sales → metric
+cost → metric
+date → temporal dimension
+client → business entity
+
+This module uses the HELIOS semantic matrix and industry pattern library.
+
+↓
+
+KPI GENERATION ENGINE
+
+Generates business indicators from the interpreted dataset.
+
+Examples of generated indicators:
+
+total sales
+sales by client
+costs by project
+hours by department
+revenue by month
+
+The engine stores generated indicators in the KPI Library.
+
+↓
+
+DASHBOARD GENERATION ENGINE
+
+Transforms KPI into visual analytical dashboards.
+
+This module:
+
+selects visualization types
+organizes dashboard layouts
+groups related indicators
+creates interactive visualizations
+
+The dashboards allow users to quickly understand business performance.
+
+↓
+
+ANALYSIS ASSISTANT
+
+The interaction layer between HELIOS and the user.
+
+Users can request analysis by specifying business questions.
+
+Examples:
+
+analyze sales
+analyze projects
+analyze operations
+
+The assistant interprets user intent and triggers the appropriate analytical workflow.
+
+↓
+
+LEARNING ENGINE
+
+The final module responsible for improving HELIOS over time.
+
+The learning engine records:
+
+frequent analyses
+preferred KPI
+user interactions
+
+This allows HELIOS to adapt and improve its analytical recommendations.
+
+Outcome
+
+Through this pipeline, HELIOS transforms raw business data into structured analytical insights.
+
+The user can move from data to decision-making without technical configuration or manual dashboard construction.

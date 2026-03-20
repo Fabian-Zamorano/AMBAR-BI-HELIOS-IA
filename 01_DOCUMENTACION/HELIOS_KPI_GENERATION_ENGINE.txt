@@ -1,0 +1,189 @@
+HELIOS KPI GENERATION ENGINE
+
+Purpose
+
+The KPI Generation Engine is responsible for transforming structured datasets into business indicators (KPI).
+
+This engine analyzes the dataset interpreted by HELIOS and automatically generates relevant indicators that help the user understand operational performance.
+
+The objective is to convert raw data into meaningful analytical insights without requiring technical configuration from the user.
+
+Core Responsibilities
+
+The engine performs three main functions:
+
+- Identify metrics within the dataset
+- Generate possible KPI combinations
+- Propose relevant business indicators
+
+HELIOS assists this engine by understanding the context of the data and prioritizing the most meaningful indicators.
+
+KPI Detection Process
+
+After the dataset has been validated and interpreted, the engine identifies three fundamental data types:
+
+Metrics
+Numeric fields that can be aggregated.
+
+Examples:
+sales
+cost
+hours worked
+quantity
+revenue
+
+Dimensions
+Categorical fields used to group metrics.
+
+Examples:
+client
+product
+project
+department
+region
+
+Temporal Dimensions
+Date-related fields used for time analysis.
+
+Examples:
+date
+month
+year
+period
+
+These elements form the base structure used to generate indicators.
+
+KPI Types
+
+The engine generates several standard KPI types.
+
+Total Indicators
+
+These represent aggregated values.
+
+Examples:
+Total Sales
+Total Costs
+Total Hours Worked
+
+Aggregation used:
+SUM
+
+Dimension-Based Indicators
+
+Metrics grouped by dimensions.
+
+Examples:
+Sales by Client
+Costs by Project
+Hours by Department
+
+Aggregation used:
+SUM grouped by dimension
+
+Time-Based Indicators
+
+Metrics analyzed over time.
+
+Examples:
+Sales by Month
+Revenue by Year
+Hours by Week
+
+This requires detection of temporal fields.
+
+Average Indicators
+
+Average values calculated from numeric fields.
+
+Examples:
+Average Sales
+Average Cost per Project
+Average Hours per Task
+
+Aggregation used:
+AVERAGE
+
+Contribution Indicators
+
+Percentage contribution relative to totals.
+
+Examples:
+Sales Contribution by Client
+Cost Contribution by Department
+
+Aggregation used:
+percentage of total
+
+Ranking Indicators
+
+Indicators used to rank entities.
+
+Examples:
+Top Clients
+Top Products
+Projects with Highest Cost
+
+Aggregation used:
+sorting and ranking
+
+KPI Prioritization
+
+Not all generated indicators are equally useful.
+
+HELIOS evaluates KPI relevance based on:
+
+- dataset structure
+- distribution of values
+- business context patterns
+- learned user behavior
+
+This helps prioritize meaningful indicators and avoid excessive or irrelevant results.
+
+KPI Library
+
+All generated indicators are stored in a structured KPI library.
+
+Example entries:
+
+Total Sales
+Total Costs
+Sales by Client
+Costs by Project
+Hours by Department
+Revenue by Month
+
+The library allows dashboards and analyses to reuse previously generated indicators.
+
+Custom KPI Creation
+
+Users can define custom indicators when needed.
+
+Examples:
+
+Margin = Sales - Cost
+
+Productivity = Hours Worked / Output
+
+The system should support simple formulas without requiring programming knowledge.
+
+KPI Engine Workflow
+
+The KPI generation process follows this sequence:
+
+Dataset validated
+Dataset interpreted by HELIOS
+Metrics identified
+Dimensions identified
+Temporal fields detected
+Possible KPI combinations generated
+Relevant KPI prioritized
+KPI stored in KPI Library
+
+These indicators are then passed to the Dashboard Generation Engine.
+
+System Outcome
+
+The KPI Generation Engine transforms structured data into operational indicators that help users understand their business performance.
+
+This allows non-technical users to quickly obtain insights from their data without complex configuration.

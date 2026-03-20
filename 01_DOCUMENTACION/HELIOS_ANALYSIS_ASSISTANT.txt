@@ -1,0 +1,107 @@
+HELIOS ANALYSIS ASSISTANT
+
+Purpose
+
+The HELIOS Analysis Assistant is the intelligent interaction layer between the user and the analytical engines of AMBAR BI.
+
+Its purpose is to allow users to perform business analysis without manually creating dashboards, defining models, or configuring visualizations.
+
+Instead of building reports manually, users simply express what they want to analyze.
+
+The assistant interprets the request and activates the appropriate analytical engines to generate the analysis automatically.
+
+Core Responsibilities
+
+The Analysis Assistant performs the following tasks:
+
+- interpret the user's analytical intent
+- identify relevant datasets
+- select or generate appropriate KPI
+- trigger dashboard generation
+- propose additional analytical insights
+
+The assistant coordinates the interaction between the user and the HELIOS analytical engines.
+
+User Interaction Model
+
+Users interact with the system by expressing analytical goals rather than technical instructions.
+
+Examples of user requests include:
+
+analyze sales
+analyze costs
+analyze projects
+analyze productivity
+analyze operational performance
+analyze human resources
+
+The system translates these requests into analytical workflows.
+
+Interaction Modes
+
+The assistant supports multiple interaction methods.
+
+Guided Selection
+
+Users can choose predefined analysis categories.
+
+Example:
+
+What do you want to analyze?
+
+Sales
+Projects
+Operations
+Human Resources
+Finance
+
+Natural Language Input
+
+Users may type their analytical request.
+
+Example:
+
+analyze project costs
+
+The assistant interprets the intent and launches the appropriate analysis.
+
+Automatic Suggestions
+
+The system may suggest analyses based on detected datasets.
+
+Example:
+
+Sales data detected.
+Would you like to analyze sales performance?
+
+Analysis Execution Flow
+
+When the user initiates an analysis, the assistant executes the following sequence:
+
+interpret user intent
+identify relevant datasets
+consult KPI library
+generate missing KPI if necessary
+trigger the KPI Generation Engine
+activate the Dashboard Generation Engine
+present the resulting analysis
+
+This process allows users to move directly from a business question to a visual analysis.
+
+Learning and Adaptation
+
+The assistant interacts with the HELIOS Learning Engine.
+
+Over time, the system learns:
+
+which analyses the user performs most frequently
+which KPI are most relevant
+which dashboards are most consulted
+
+This allows HELIOS to improve its analytical suggestions.
+
+Outcome
+
+The HELIOS Analysis Assistant transforms business questions into structured analytical outputs.
+
+This enables users without technical expertise to explore and understand their business performance quickly and effectively.
