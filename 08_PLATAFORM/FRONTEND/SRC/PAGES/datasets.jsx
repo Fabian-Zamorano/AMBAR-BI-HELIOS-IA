@@ -17,6 +17,7 @@ import {
 import { motion } from "framer-motion";
 import PageHeader from "@/components/shared/PageHeader";
 import HeliosButton from "@/components/shared/HeliosButton";
+import Datasets from "./Datasets";
 
 export default function Datasets() {
   const navigate = useNavigate();
