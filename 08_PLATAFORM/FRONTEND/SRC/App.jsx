@@ -1,22 +1,28 @@
-import { Toaster } from "@/components/ui/toaster"
-import { QueryClientProvider } from '@tanstack/react-query'
-import { queryClientInstance } from '@/lib/query-client'
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import PageNotFound from './lib/PageNotFound';
-import { AuthProvider, useAuth } from '@/lib/AuthContext';
-import UserNotRegisteredError from '@/components/UserNotRegisteredError';
+import { Toaster } from "@/components/ui/toaster";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClientInstance } from "@/lib/query-client";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
+import PageNotFound from "./lib/PageNotFound";
+import { AuthProvider, useAuth } from "@/lib/AuthContext";
+import UserNotRegisteredError from "@/components/UserNotRegisteredError";
 
-import AppLayout from '@/components/layout/AppLayout';
-import Home from '@/pages/Home';
-import Onboarding from '@/pages/Onboarding';
-import DataSources from '@/pages/DataSources';
-import Datasets from '@/pages/Datasets';
-import KPIs from '@/pages/KPIs';
-import Dashboards from '@/pages/Dashboards';
-import Helios from '@/pages/Helios';
+import AppLayout from "@/components/layout/AppLayout";
+import Home from "@/pages/Home";
+import Onboarding from "@/pages/Onboarding";
+import DataSources from "@/pages/DataSources";
+import Datasets from "@/pages/Datasets";
+import KPIs from "@/pages/KPIs";
+import Dashboards from "@/pages/Dashboards";
+import Helios from "@/pages/Helios";
 
 const AuthenticatedApp = () => {
-  const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
+  const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } =
+    useAuth();
 
   if (isLoadingPublicSettings || isLoadingAuth) {
     return (
@@ -32,9 +38,9 @@ const AuthenticatedApp = () => {
   }
 
   if (authError) {
-    if (authError.type === 'user_not_registered') {
+    if (authError.type === "user_not_registered") {
       return <UserNotRegisteredError />;
-    } else if (authError.type === 'auth_required') {
+    } else if (authError.type === "auth_required") {
       navigateToLogin();
       return null;
     }
@@ -57,7 +63,6 @@ const AuthenticatedApp = () => {
   );
 };
 
-
 function App() {
   return (
     <AuthProvider>
@@ -68,7 +73,7 @@ function App() {
         <Toaster />
       </QueryClientProvider>
     </AuthProvider>
-  )
+  );
 }
 
-export default App
+export default App;
