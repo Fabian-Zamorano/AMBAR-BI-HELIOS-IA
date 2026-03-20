@@ -1,439 +1,267 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   Upload,
   FileSpreadsheet,
-  Database,
-  Server,
-  Globe,
-  CloudUpload,
-  X,
-  Loader2,
-  CheckCircle2,
   FileText,
+  Database,
+  AlertCircle,
+  CheckCircle2,
+  Loader2,
+  Plus,
+  Trash2,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import PageHeader from "@/components/shared/PageHeader";
 
-const sourceTypes = [
-  {
-    type: "excel",
-    label: "Excel",
-    icon: FileSpreadsheet,
-    description: "Upload .xlsx or .xls files",
-    accept: ".xlsx,.xls",
-  },
-  {
-    type: "csv",
-    label: "CSV",
-    icon: FileText,
-    description: "Upload .csv files",
-    accept: ".csv",
-  },
-  {
-    type: "sql",
-    label: "SQL Database",
-    icon: Database,
-    description: "Connect to a database",
-    disabled: true,
-  },
-  {
-    type: "erp",
-    label: "ERP Export",
-    icon: Server,
-    description: "Import ERP data",
-    disabled: true,
-  },
-  {
-    type: "api",
-    label: "API",
-    icon: Globe,
-    description: "Connect via API",
-    disabled: true,
-  },
-];
-
 export default function DataSources() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const [dragOver, setDragOver] = useState(false);
-  const [uploading, setUploading] = useState(false);
-  const [selectedType, setSelectedType] = useState(null);
+  const [sourceType, setSourceType] = useState("Excel");
+  const [dragActive, setDragActive] = useState(false);
+  const fileInputRef = React.useRef(null);
 
-  const { data: datasets = [] } = useQuery({
-    queryKey: ["datasets"],
+  const { data: Sources = [] } = useQuery({
+    queryKey: ["dataSources"],
     queryFn: () => base44.entities.Dataset.list("-created_date"),
   });
 
-  const analyzeDataset = useMutation({
-    mutationFn: async ({ file, sourceType }) => {
-      setUploading(true);
-      // Upload file
-      const { file_url } = await base44.integrations.Core.UploadFile({ file });
+  const uploadFile = useMutation({
+    mutationFn: async (file) => {
+      // Determine file type based on extension
+      let sourceType = "Excel";
+      if (file.name.endsWith(".csv")) sourceType = "CSV";
+      else if (file.name.endsWith(".xlsx") || file.name.endsWith(".xls")) sourceType = "Excel";
 
-      // Create dataset record
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const uploadedFile = await base44.core.ExtractDataFromUploadedFile({
+        source_type: sourceType,
+        data: formData,
+      });
+
+      // Run HELIOS analysis on the uploaded data
+      if (uploadedFile.columns && uploadedFile.columns.length > 0) {
+        const columnInfo = uploadedFile.columns.map((c) => `${c.name} (${c.type})`).join(", ");
+        const sampleData = uploadedFile.sample_data ? JSON.stringify(uploadedFile.sample_data.slice(0, 3)) : "";
+
+        const analysis = await base44.integrations.Core.InvokeLLM({
+          prompt: `Based on this data structure, suggest business KPIs and a dashboard approach:
+Dataset: ${file.name.replace(/\.[^/.]+$/, "")}
+Columns: ${columnInfo}
+Sample rows: ${sampleData}
+
+Return a brief analysis.`,
+        });
+
+        uploadedFile.suggested_kpis = analysis
+          .split("\n")
+          .filter((line) => line.trim())
+          .slice(0, 5);
+      }
+
+      // Create dataset entity
       const dataset = await base44.entities.Dataset.create({
         name: file.name.replace(/\.[^/.]+$/, ""),
         source_type: sourceType,
-        file_url,
-        status: "processing",
+        columns: uploadedFile.columns || [],
+        row_count: uploadedFile.row_count || 0,
+        sample_data: uploadedFile.sample_data || [],
+        suggested_kpis: uploadedFile.suggested_kpis || [],
+        status: "ready",
       });
 
       // Log activity
       await base44.entities.AnalysisActivity.create({
         type: "upload",
-        title: `Uploaded ${file.name}`,
-        description: `${sourceType.toUpperCase()} file uploaded for analysis`,
-        dataset_id: dataset.id,
+        title: `Uploaded: ${file.name}`,
+        description: `${sourceType} file with ${(uploadedFile.columns || []).length} columns and ${uploadedFile.row_count || 0} rows`,
       });
-
-      // Extract data to analyze
-      const extracted =
-        await base44.integrations.Core.ExtractDataFromUploadedFile({
-          file_url,
-          json_schema: {
-            type: "object",
-            properties: {
-              columns: {
-                type: "array",
-                items: {
-                  type: "object",
-                  properties: {
-                    name: { type: "string" },
-                    type: {
-                      type: "string",
-                      description: "One of: number, string, date, boolean",
-                    },
-                    sample_values: { type: "array", items: { type: "string" } },
-                    missing_count: { type: "number" },
-                    unique_count: { type: "number" },
-                  },
-                },
-              },
-              row_count: { type: "number" },
-              data_sample: { type: "array", items: { type: "object" } },
-            },
-          },
-        });
-
-      if (extracted.status === "success" && extracted.output) {
-        const rawColumns = extracted.output.columns || [];
-        const rowCount = extracted.output.row_count || 0;
-        const rawData = (extracted.output.data_sample || []).slice(0, 50);
-
-        if (rawColumns.length === 0 || rowCount === 0) {
-          await base44.entities.Dataset.update(dataset.id, {
-            status: "error",
-            columns: [],
-            row_count: 0,
-          });
-          return dataset;
-        }
-
-        // Detect common business column types
-        const businessKeywords = {
-          date: [
-            "fecha",
-            "date",
-            "dia",
-            "mes",
-            "año",
-            "periodo",
-            "time",
-            "created",
-            "updated",
-          ],
-          amount: [
-            "monto",
-            "amount",
-            "total",
-            "precio",
-            "price",
-            "revenue",
-            "ingreso",
-            "costo",
-            "cost",
-            "venta",
-            "sale",
-            "pago",
-            "payment",
-          ],
-          category: [
-            "categoria",
-            "category",
-            "tipo",
-            "type",
-            "estado",
-            "status",
-            "grupo",
-            "group",
-            "segmento",
-          ],
-          employee: [
-            "empleado",
-            "employee",
-            "vendedor",
-            "agente",
-            "usuario",
-            "user",
-            "responsable",
-          ],
-          project: [
-            "proyecto",
-            "project",
-            "cliente",
-            "client",
-            "producto",
-            "product",
-          ],
-        };
-
-        const columns = rawColumns.map((col) => {
-          const lower = col.name.toLowerCase();
-          let businessType = null;
-          for (const [bType, keywords] of Object.entries(businessKeywords)) {
-            if (keywords.some((k) => lower.includes(k))) {
-              businessType = bType;
-              break;
-            }
-          }
-          return { ...col, business_type: businessType };
-        });
-
-        await base44.entities.Dataset.update(dataset.id, {
-          columns,
-          row_count: rowCount,
-          raw_data: rawData,
-        });
-
-        // Auto-run HELIOS analysis only if real data exists
-        const columnInfo = columns
-          .map((c) => `${c.name} (${c.type})`)
-          .join(", ");
-        const heliosResult = await base44.integrations.Core.InvokeLLM({
-          prompt: `Analyze this business dataset and suggest KPIs.
-
-Dataset: "${file.name}"
-Columns: ${columnInfo}
-Row count: ${rowCount}
-Sample data: ${JSON.stringify(rawData.slice(0, 5))}
-
-Based on the ACTUAL column names and data types present, suggest 3-6 meaningful business KPIs. Only suggest KPIs that can realistically be computed from the available columns. For each KPI provide a name, a simple formula description, and a brief business explanation.`,
-          response_json_schema: {
-            type: "object",
-            properties: {
-              summary: { type: "string" },
-              suggested_kpis: {
-                type: "array",
-                items: {
-                  type: "object",
-                  properties: {
-                    name: { type: "string" },
-                    formula: { type: "string" },
-                    description: { type: "string" },
-                  },
-                },
-              },
-            },
-          },
-        });
-
-        await base44.entities.Dataset.update(dataset.id, {
-          status: "ready",
-          analysis_summary: heliosResult.summary,
-          suggested_kpis: heliosResult.suggested_kpis || [],
-        });
-
-        await base44.entities.AnalysisActivity.create({
-          type: "analysis",
-          title: `HELIOS analizó ${file.name}`,
-          description: heliosResult.summary,
-          dataset_id: dataset.id,
-        });
-      } else {
-        await base44.entities.Dataset.update(dataset.id, {
-          status: "error",
-          columns: [],
-          row_count: 0,
-        });
-      }
 
       return dataset;
     },
-    onSuccess: (dataset) => {
-      setUploading(false);
-      queryClient.invalidateQueries({ queryKey: ["datasets"] });
-      navigate(`/Datasets?id=${dataset.id}`);
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["dataSources"] });
     },
-    onError: () => setUploading(false),
   });
 
-  const handleDrop = useCallback((e) => {
-    e.preventDefault();
-    setDragOver(false);
-    const file = e.dataTransfer.files[0];
-    if (file) {
-      const ext = file.name.split(".").pop().toLowerCase();
-      const sourceType = ["xlsx", "xls"].includes(ext) ? "excel" : "csv";
-      analyzeDataset.mutate({ file, sourceType });
-    }
-  }, []);
+  const deleteSource = useMutation({
+    mutationFn: (id) => base44.entities.Dataset.delete(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["dataSources"] });
+    },
+  });
 
-  const handleFileSelect = (e, sourceType) => {
-    const file = e.target.files[0];
-    if (file) {
-      analyzeDataset.mutate({ file, sourceType });
+  const handleDrag = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.type === "dragenter" || e.type === "dragover") {
+      setDragActive(true);
+    } else if (e.type === "dragleave") {
+      setDragActive(false);
     }
   };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(false);
+
+    const files = e.dataTransfer.files;
+    if (files && files[0]) {
+      uploadFile.mutate(files[0]);
+    }
+  };
+
+  const handleChange = (e) => {
+    const files = e.target.files;
+    if (files && files[0]) {
+      uploadFile.mutate(files[0]);
+    }
+  };
+
+  const sourceTypeOptions = [
+    { value: "Excel", label: "Excel", icon: FileSpreadsheet, enabled: true },
+    { value: "CSV", label: "CSV", icon: FileText, enabled: true },
+    { value: "SQL", label: "SQL", icon: Database, enabled: false },
+    { value: "API", label: "API", icon: Plus, enabled: false },
+  ];
 
   return (
     <div className="p-6 lg:p-8 max-w-7xl mx-auto">
       <PageHeader
-        title="Data Sources"
-        subtitle="Upload and manage your business data"
+        title="Origen de Datos"
+        subtitle="Carga y gestiona archivos de datos"
+        icon={Upload}
       />
 
-      {/* Upload Area */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="mb-8"
-      >
-        <div
-          onDragOver={(e) => {
-            e.preventDefault();
-            setDragOver(true);
-          }}
-          onDragLeave={() => setDragOver(false)}
-          onDrop={handleDrop}
-          className={`relative border-2 border-dashed rounded-2xl p-12 text-center transition-all duration-300 ${
-            dragOver
-              ? "border-amber-500 bg-amber-500/5"
-              : "border-slate-800 bg-slate-900/30 hover:border-slate-700"
-          }`}
-        >
-          {uploading ? (
-            <div className="flex flex-col items-center">
-              <Loader2 className="w-10 h-10 text-amber-400 animate-spin mb-4" />
-              <p className="text-white font-medium mb-1">
-                Procesando tu archivo...
-              </p>
-              <p className="text-sm text-slate-400">
-                HELIOS está detectando columnas, tipos de datos y sugiriendo
-                KPIs automáticamente
-              </p>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Upload Section */}
+        <div className="lg:col-span-1">
+          <div className="space-y-4">
+            {/* Source Type Selection */}
+            <div>
+              <label className="text-sm font-semibold text-slate-300 block mb-2">Tipo de origen</label>
+              <div className="grid grid-cols-2 gap-2">
+                {sourceTypeOptions.map((option) => (
+                  <button
+                    key={option.value}
+                    onClick={() => setSourceType(option.value)}
+                    disabled={!option.enabled}
+                    className={`p-3 rounded-lg border text-sm font-medium transition-all ${
+                      sourceType === option.value
+                        ? "bg-amber-500/10 border-amber-500/30 text-amber-400"
+                        : option.enabled
+                        ? "bg-slate-900/50 border-slate-800/50 text-slate-400 hover:border-slate-700"
+                        : "bg-slate-900/30 border-slate-800/30 text-slate-600 cursor-not-allowed"
+                    }`}
+                  >
+                    <option.icon className="w-4 h-4 mx-auto mb-1" />
+                    {option.label}
+                  </button>
+                ))}
+              </div>
             </div>
-          ) : (
-            <>
-              <CloudUpload
-                className={`w-12 h-12 mx-auto mb-4 ${dragOver ? "text-amber-400" : "text-slate-600"}`}
-              />
-              <p className="text-white font-medium mb-1">
-                Arrastra y suelta tu archivo aquí
-              </p>
-              <p className="text-sm text-slate-400 mb-4">
-                o haz clic en un tipo de fuente para cargar
-              </p>
-              <p className="text-xs text-slate-600">
-                Soporta archivos Excel (.xlsx, .xls) y CSV (.csv)
-              </p>
-            </>
-          )}
-        </div>
-      </motion.div>
 
-      {/* Source Types */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.1 }}
-        className="mb-8"
-      >
-        <h3 className="text-sm font-semibold text-white mb-4">
-          Tipos de fuente
-        </h3>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-          {sourceTypes.map((src) => (
-            <label
-              key={src.type}
-              className={`relative bg-slate-900/50 border border-slate-800/50 rounded-xl p-4 text-center transition-all duration-200 ${
-                src.disabled
-                  ? "opacity-40 cursor-not-allowed"
-                  : "cursor-pointer hover:border-amber-500/30 hover:bg-slate-900/80"
+            {/* Drag & Drop */}
+            <div
+              onDragEnter={handleDrag}
+              onDragLeave={handleDrag}
+              onDragOver={handleDrag}
+              onDrop={handleDrop}
+              className={`border-2 border-dashed rounded-xl p-6 text-center transition-all cursor-pointer ${
+                dragActive
+                  ? "border-amber-500/50 bg-amber-500/5"
+                  : "border-slate-800 bg-slate-900/30 hover:border-amber-500/30"
               }`}
             >
-              {!src.disabled && (
-                <input
-                  type="file"
-                  accept={src.accept}
-                  className="hidden"
-                  onChange={(e) => handleFileSelect(e, src.type)}
-                />
-              )}
-              <src.icon className="w-6 h-6 text-slate-400 mx-auto mb-2" />
-              <p className="text-xs font-medium text-white">{src.label}</p>
-              <p className="text-[10px] text-slate-500 mt-0.5">
-                {src.disabled ? "Próximamente" : src.description}
-              </p>
-            </label>
-          ))}
-        </div>
-      </motion.div>
-
-      {/* Existing Datasets */}
-      {datasets.length > 0 && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-        >
-          <h3 className="text-sm font-semibold text-white mb-4">
-            Conjuntos de datos cargados
-          </h3>
-          <div className="space-y-2">
-            {datasets.map((ds) => (
+              <input ref={fileInputRef} type="file" onChange={handleChange} className="hidden" />
+              <Upload className="w-8 h-8 text-slate-600 mx-auto mb-2" />
+              <p className="text-sm font-medium text-slate-300 mb-1">Arrastra un archivo aquí</p>
+              <p className="text-xs text-slate-500 mb-3">o</p>
               <button
-                key={ds.id}
-                onClick={() => navigate(`/Datasets?id=${ds.id}`)}
-                className="w-full bg-slate-900/50 border border-slate-800/50 rounded-xl p-4 flex items-center gap-4 hover:border-slate-700/50 transition-all text-left"
+                onClick={() => fileInputRef.current?.click()}
+                className="text-xs bg-amber-500/10 text-amber-400 border border-amber-500/20 px-3 py-1.5 rounded-lg hover:bg-amber-500/20 transition-colors"
               >
-                <div className="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center flex-shrink-0">
-                  <FileSpreadsheet className="w-5 h-5 text-amber-400" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-white truncate">
-                    {ds.name}
-                  </p>
-                  <p className="text-xs text-slate-500">
-                    {ds.source_type} · {ds.row_count || 0} rows ·{" "}
-                    {ds.columns?.length || 0} columns
-                  </p>
-                </div>
-                <span
-                  className={`text-xs px-2.5 py-1 rounded-full font-medium ${
-                    ds.status === "ready"
-                      ? "bg-emerald-500/10 text-emerald-400"
-                      : ds.status === "processing"
-                        ? "bg-amber-500/10 text-amber-400"
-                        : "bg-rose-500/10 text-rose-400"
-                  }`}
-                >
-                  {ds.status === "ready" && (
-                    <CheckCircle2 className="w-3 h-3 inline mr-1" />
-                  )}
-                  {ds.status === "ready"
-                    ? "Listo"
-                    : ds.status === "processing"
-                      ? "Procesando"
-                      : "Error en archivo"}
-                </span>
+                Seleccionar archivo
               </button>
-            ))}
+              <p className="text-xs text-slate-600 mt-3">{sourceType} • Máx 100MB</p>
+            </div>
+
+            {uploadFile.isPending && (
+              <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-4 flex items-center gap-2 text-sm text-slate-300">
+                <Loader2 className="w-4 h-4 animate-spin" />
+                Procesando archivo...
+              </div>
+            )}
           </div>
-        </motion.div>
-      )}
+        </div>
+
+        {/* Sources List */}
+        <div className="lg:col-span-2">
+          <div className="space-y-3">
+            {Sources.length === 0 ? (
+              <div className="text-center py-12">
+                <Database className="w-12 h-12 text-slate-700 mx-auto mb-3" />
+                <p className="text-slate-400">No hay fuentes de datos cargadas</p>
+                <p className="text-xs text-slate-600">Carga tu primer archivo para comenzar</p>
+              </div>
+            ) : (
+              Sources.map((source) => (
+                <motion.div
+                  key={source.id}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="bg-slate-900/50 border border-slate-800/50 rounded-xl p-4 hover:border-amber-500/30 transition-all group"
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex items-start gap-3 flex-1">
+                      <div className="w-10 h-10 rounded-lg bg-slate-800/50 flex items-center justify-center flex-shrink-0">
+                        {source.source_type === "Excel" && <FileSpreadsheet className="w-5 h-5 text-blue-400" />}
+                        {source.source_type === "CSV" && <FileText className="w-5 h-5 text-green-400" />}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-semibold text-white truncate">{source.name}</h3>
+                        <p className="text-xs text-slate-400">
+                          {source.row_count} filas · {(source.columns || []).length} columnas
+                        </p>
+                        <div className="flex items-center gap-2 mt-2 flex-wrap">
+                          {source.status === "ready" && (
+                            <span className="inline-flex items-center gap-1 text-xs text-emerald-400 bg-emerald-500/10 px-2 py-1 rounded-lg">
+                              <CheckCircle2 className="w-3 h-3" />
+                              Listo
+                            </span>
+                          )}
+                          {source.status === "processing" && (
+                            <span className="inline-flex items-center gap-1 text-xs text-amber-400 bg-amber-500/10 px-2 py-1 rounded-lg">
+                              <Loader2 className="w-3 h-3 animate-spin" />
+                              Procesando
+                            </span>
+                          )}
+                          {source.suggested_kpis && source.suggested_kpis.length > 0 && (
+                            <span className="text-xs text-amber-400 bg-amber-500/10 px-2 py-1 rounded-lg">
+                              {source.suggested_kpis.length} KPIs sugeridos
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => deleteSource.mutate(source.id)}
+                      className="opacity-0 group-hover:opacity-100 transition-opacity text-slate-500 hover:text-rose-400 p-1.5 flex-shrink-0"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
+                </motion.div>
+              ))
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
